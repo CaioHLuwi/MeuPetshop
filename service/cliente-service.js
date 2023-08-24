@@ -15,7 +15,6 @@ const criaNovaLinha = (nome, email) => {
 } // Elemento filho
 
 const tabela = document.querySelector('[data-tabela]') // Elemento pai
-    
 
 const http = new XMLHttpRequest()
 
@@ -25,7 +24,10 @@ http.open('GET', 'http://localhost:3000/profile')
 http.send()
 
 http.onload = () => {
-    const data = http.response
-    console.log(data)
+    const data = JSON.parse(http.response) // http.response Devolve texto (Hyper Text Transfer Protocol)
+    // Para quebrar isso usamos o JSON.parse e transformar em objeto JS
+    data.forEach(elemento => {
+        tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email))
+    })
 }
 // Ao carregar vai imprimir o que o servidor respondeu
