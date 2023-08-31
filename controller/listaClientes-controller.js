@@ -25,6 +25,9 @@ tabela.addEventListener('click', (evento) => {
         const linhaCliente = evento.target.closest('[data-id]') // Encontra o elemento mais próximo ao especificado
         let id = linhaCliente.dataset.id
         clienteService.removeCliente(id)
+        .then( () => {
+            linhaCliente.remove()
+        })
     }
 })
 
