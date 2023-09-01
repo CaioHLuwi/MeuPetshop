@@ -28,9 +28,17 @@ const removeCliente = (id) => {
     })
 }
 
+const detalhaCliente = (id) => {
+    return fetch(`http://localhost:3000/profile/${id}`)
+    .then( resposta => {
+        return resposta.json()
+    })
+}
+
 export const clienteService = {
     listaClientes,
     criaCliente,
-    removeCliente
+    removeCliente,
+    detalhaCliente
 }
 
