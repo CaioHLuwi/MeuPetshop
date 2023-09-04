@@ -22,10 +22,16 @@ const tabela = document.querySelector('[data-tabela]') // Elemento pai
 tabela.addEventListener('click', async (evento) => {
     let ehBotaoDeletar = evento.target.className == 'botao-simples botao-simples--excluir'
     if(ehBotaoDeletar){
-        const linhaCliente = evento.target.closest('[data-id]') // Encontra o elemento mais próximo ao especificado
-        let id = linhaCliente.dataset.id
-        await clienteService.removeCliente(id)
-        linhaCliente.remove()
+        try {
+            const linhaCliente = evento.target.closest('[data-id]') // Encontra o elemento mais próximo ao especificado
+            let id = linhaCliente.dataset.id
+            await clienteService.removeCliente(id)
+            linhaCliente.remove()
+        }
+        catch(erro){
+            console.log(erro)
+            window.location.href = '../telas/erro.html'
+        }
     }
 })
 
