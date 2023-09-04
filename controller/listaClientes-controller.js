@@ -36,10 +36,17 @@ tabela.addEventListener('click', async (evento) => {
 })
 
 const render = async () => {
-    const clienteInService = await clienteService.listaClientes()
-    clienteInService.forEach(elemento => {
-        tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email, elemento.id))
-    })
+    try {
+        const clienteInService = await clienteService.listaClientes()
+        clienteInService.forEach(elemento => {
+            tabela.appendChild(criaNovaLinha(elemento.nome, elemento.email, elemento.id))
+        })
+    }
+    catch(erro){
+        console.log(erro)
+        window.location.href = '../telas/erro.html'
+    }
+    
 }
 render()
 
